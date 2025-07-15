@@ -1,0 +1,214 @@
+\begin{tikzpicture}
+
+\begin{groupplot}[
+	compat=1.3,
+	group style={group size=4 by 1,
+	horizontal sep=0.55cm,
+    vertical sep=0.5cm,},
+	]
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\diff_t(x)$},
+		ylabel style={yshift=-6.0pt},	
+		ylabel={$t$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.200\textwidth,
+		width=0.200\textwidth,
+        ymin=-0.05,
+        ymax=1.0,
+        xmin=-0.05,
+        xmax=1.0,
+        xticklabels={{$x_1$}, {$x_2$}},
+		%xticklabel style={above},
+        yticklabels={{$0$}},
+		% xmajorticks=false,
+		xtick={0,0.5},
+		ytick={0},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend style={
+			at={(2.20,1.00)},inner sep=3pt,anchor=south,legend columns=5,legend cell align={left}, draw=none,fill=none},
+		]	
+
+		\addlegendimage{steelblue,very thick}
+		\addlegendimage{joshua,very thick}
+		\addlegendimage{orange,very thick}
+		\addlegendimage{rust,very thick}
+		\addlegendimage{area legend, pattern=dots, pattern color=darksilver}
+
+		\legend{Nominal ($\alpha = 0.0$), $\alpha = 10^{-5}$, $\alpha = 10^{-4}$, $\alpha = 10^{-3}$, infeasible set}
+
+       	\addplot[rust,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.001.txt};
+
+        \addplot[rust,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.001.txt};
+       	\addplot[orange,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0001.txt};
+
+        \addplot[orange,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0001.txt};
+
+       	\addplot[joshua,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_1.0e-5.txt};
+
+        \addplot[joshua,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_1.0e-5.txt};
+
+       	\addplot[steelblue,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0.txt};
+        \addplot[steelblue,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0.txt};
+		
+		\draw[thick, darksilver] (axis cs: 0.575,0.55) rectangle (axis cs: 0.675,0.45);
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+		\coordinate (tr1) at (axis cs:0.675,0.55);
+		\coordinate (br1) at (axis cs:0.675,00.45);
+
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\diff_t(x)$},
+		% ylabel={$t$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.200\textwidth,
+		width=0.200\textwidth,
+        ymin=0.45,
+        ymax=0.55,
+        xmin=0.575,
+        xmax=0.675,
+        xticklabels={{$\phantom{x_1}$}},
+        yticklabels={},
+		xtick={0.575},
+		% xmajorticks=false,
+		ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend style={
+			at={(2.27,1.02)},inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+       	\addplot[rust,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.001.txt};
+
+        \addplot[rust,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.001.txt};
+
+       	\addplot[orange,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0001.txt};
+
+        \addplot[orange,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0001.txt};
+
+       	\addplot[joshua,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_1.0e-5.txt};
+
+        \addplot[joshua,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_1.0e-5.txt};
+
+       	\addplot[steelblue,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0.txt};
+
+        \addplot[steelblue,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0.txt};
+
+		\coordinate (tl1) at (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\pgfkeysvalueof{/pgfplots/ymax});
+		\coordinate (bl1) at (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\pgfkeysvalueof{/pgfplots/ymin});
+
+	
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		%xlabel={$\bar{\diff}_t \coloneqq \left(\diff_t(x_2) + \diff_t(x_1)\right) / 2$},
+		%ylabel={$\diff'_t \coloneqq \left(\diff_t(x_2) - \diff_t(x_1)\right) / 2$},
+ 		xlabel={$\diff_t$},
+		ylabel={$\partial_x \diff_t$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.200\textwidth,
+		width=0.200\textwidth,
+        ymin=-0.425,
+        ymax=0.425,
+        xmin=0.2,
+        xmax=1.05,
+        % xticklabels={},
+        xticklabels={{$\phantom{x_1}$}},
+		xtick={1.05},
+        yticklabels={},
+		% xmajorticks=false,
+		ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		]	
+
+		\addplot+[mark=none,
+        domain=0:1.25,
+        samples=100,
+        pattern= dots,
+        area legend,
+        pattern color=darksilver]{-20} \closedcycle;
+	      
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+
+       	\addplot[rust,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.001.txt};
+
+       	\addplot[orange,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0001.txt};
+
+       	\addplot[joshua,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_1.0e-5.txt};
+
+       	\addplot[steelblue,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0.txt};
+
+
+		\draw[thick, darksilver] (axis cs: 0.575,0.05) rectangle (axis cs: 0.675,-0.05);
+
+		\coordinate (tr2) at (axis cs:0.675,0.05);
+		\coordinate (br2) at (axis cs:0.675,-0.05);
+
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		% xlabel={$\bar{\diff}_t \coloneqq \left(\diff_t(x_2) + \diff_t(x_1)\right) / 2$},
+ 		xlabel={$\diff_t$},
+		% ylabel={$D\phi_t := \left(\phi_t(x_2) - \phi_t(x_1)\right) / 2$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.200\textwidth,
+		width=0.200\textwidth,
+        ymin=-0.05,
+        ymax=0.05,
+        xmin=0.575,
+        xmax=0.675,
+        % xticklabels={},
+        xticklabels={{$\phantom{x_1}$}},
+		xtick={0.675},
+		% xmajorticks=false,
+		% ymajorticks=false,
+		ytick={0},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		scaled y ticks=false,
+		]	
+
+	 	\addplot+[mark=none,
+        domain=0.25:0.75,
+        samples=100,
+        pattern=dots,
+        pattern color=darksilver]{-5} \closedcycle;
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+       	\addplot[rust,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.001.txt};
+
+       	\addplot[orange,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0001.txt};
+
+       	\addplot[joshua,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_1.0e-5.txt};
+
+       	\addplot[steelblue,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0.txt};
+
+		\coordinate (tl2) at (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\pgfkeysvalueof{/pgfplots/ymax});
+		\coordinate (bl2) at (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\pgfkeysvalueof{/pgfplots/ymin});
+
+
+
+%       \addplot[RYB1,thick] table[y index={3}, x expr=\thisrowno{0}*2] {../data_cpinn/Schroedinger/PINN_Adam_iter_6200000.csv};
+%       \addplot[RYB3,thick] table[y index={3}, x expr={\thisrowno{6}*2+\thisrowno{0}*4}] {../data_cpinn/Schroedinger/CPINN_ACGD_iter_1000.csv};
+	\end{groupplot}
+
+	\draw[thick, darksilver] (tr2) -- (tl2);
+	\draw[thick, darksilver] (br2) -- (bl2);
+
+	\draw[thick, darksilver] (tr1) -- (tl1);
+	\draw[thick, darksilver] (br1) -- (bl1);
+\end{tikzpicture}

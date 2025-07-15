@@ -1,0 +1,76 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=3 by 1,
+	horizontal sep=0.2 cm,
+    vertical sep= 2 cm,},
+	]
+	\nextgroupplot[
+		standard,
+		title={Kinetic Energy},
+		xlabel={$t$},
+		ylabel={Energy},
+		height=0.22\textwidth,
+		width=0.28\textwidth,
+        ymin= 0.0,
+        ymax= 1.50,
+        xmin=0.0,
+        xmax=0.4,
+		legend style={
+			at={(1.50, 1.40)},inner sep=3pt,anchor=north,legend columns= -1,cells ={align = left}, draw=none,fill=none},
+		% view = {0}{90},
+		]	
+		\addlegendimage{steelblue, line width=2.8pt}
+		\addlegendimage{orange, line width=2.8pt, mark size=2.7pt}
+		\addlegendimage{rust, line width=2.8 pt, mark size=2.7, , dash pattern=on 4pt off 4pt}
+
+
+        \legend{Reference solution, LF + RK4 , LW + IGR + RK2};
+
+        \addplot[orange, line width=2.8pt] table[x index={3},y index={0}] {csv/two_sine_waves/energy_lf_two_sine_waves.csv};
+        \addplot[steelblue, line width = 2.8pt] table[x index={3},y index={0}] {csv/two_sine_waves/energy_ref_two_sine_waves.csv};
+        \addplot[rust, line width=2.8pt, dash pattern=on 4pt off 4pt] table[x index={3},y index={0}] {csv/two_sine_waves/energy_igr_two_sine_waves.csv};
+
+	\nextgroupplot[
+		standard,
+		title={Potential Energy},
+		height=0.22\textwidth,
+		width=0.28\textwidth,
+		ylabel={},
+        ymin= 0.0,
+        ymax= 1.50,
+        xmin=0.0,
+        xmax=0.4,
+		xlabel={$t$},
+		yticklabels={},
+		scaled y ticks = false,
+		legend style={
+			at={(1.0, 1.2)},inner sep=3pt,anchor=north,legend columns= -1,cells ={align = right}, draw=none,fill=none, font = \Large},
+		]	
+
+        \addplot[orange, line width=2.8pt] table[x index={3},y index={1}] {csv/two_sine_waves/energy_lf_two_sine_waves.csv};
+        \addplot[steelblue, line width = 2.8pt] table[x index={3},y index={1}] {csv/two_sine_waves/energy_ref_two_sine_waves.csv};
+        \addplot[rust, line width=2.8pt, dash pattern=on 4pt off 4pt] table[x index={3},y index={1}] {csv/two_sine_waves/energy_igr_two_sine_waves.csv};
+
+
+
+
+	\nextgroupplot[
+		standard,
+		title={Total Energy},
+		height=0.22\textwidth,
+		width=0.28\textwidth,
+		ylabel={},
+ 		xlabel={$t$},
+        ymin= 0.0,
+        ymax= 1.50,
+        xmin=0.0,
+        xmax=0.4,
+		yticklabels={},
+		scaled y ticks = false,
+		]	
+
+        \addplot[orange, line width=2.8pt] table[x index={3},y index={2}] {csv/two_sine_waves/energy_lf_two_sine_waves.csv};
+        \addplot[steelblue, line width = 2.8pt] table[x index={3},y index={2}] {csv/two_sine_waves/energy_ref_two_sine_waves.csv};
+        \addplot[rust, line width=2.8pt, dash pattern=on 4pt off 4pt] table[x index={3},y index={2}] {csv/two_sine_waves/energy_igr_two_sine_waves.csv};
+\end{groupplot}
+\end{tikzpicture}

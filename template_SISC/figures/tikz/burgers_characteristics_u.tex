@@ -1,0 +1,139 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=4 by 1,
+	horizontal sep=0 cm,
+    vertical sep= 0 cm,},
+	]
+	\nextgroupplot[
+		standard,
+		no markers,
+		height=0.230\textwidth,
+		width=0.230\textwidth,
+        ymin=-0.8,
+        ymax=1.4,
+        xmin=0.2,
+        xmax=0.8,
+		% ylabel style={rotate=-90},
+		ylabel={{\color{seagreen} $u$}, {\color{steelblue} $t$}},
+		xlabel={{\color{seagreen} $x$}, {\color{steelblue} $\diff_t(x)$}},
+		%xticklabel style={above},
+		% xmajorticks=false,
+		ytick={0},
+		yticklabels={0},
+		ymajorticks=false,
+		ymajorgrids=true,
+		xmajorticks=false,
+		xticklabels={,,},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend style={
+			at={(2.0,1.075)}, inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+		\addlegendimage{blue,very thick}
+		\addlegendimage{orange,very thick}
+		\addlegendimage{green,very thick}
+
+
+        \foreach \col in {1,...,25}{
+            % \pgfmathtruncatemacro\first{\col * 2}
+            % \pgfmathtruncatemacro\second{\col * 2 + 1}
+            \addplot[steelblue, very thick, smooth] table[x index = {\col}, y expr={6 * (\thisrowno{0})}] {csv/burgers_characteristics/burgers_chars_0.01.csv};
+        }
+
+
+    \addplot[seagreen, ultra thick, smooth] table[x index={1},y index={0}] {csv/burgers_characteristics/burgers_u_0.01.csv};
+
+	\nextgroupplot[
+		standard,
+		no markers,
+		% xlabel={Iter},
+ 		%xlabel={},
+		% ylabel={$t$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.230\textwidth,
+		width=0.230\textwidth,
+        ymin=-0.8,
+        ymax=1.4,
+        xmin=0.2,
+        xmax=0.8,
+        ytick={0},
+		ymajorticks=false,
+		ymajorgrids=true,
+		xmajorticks=false,
+		xticklabels={,,}, 
+		enlarge y limits=0.,
+		legend style={
+			at={(2.20,1.00)},inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+        \foreach \col in {1,...,25}{
+            \addplot[steelblue, very thick, smooth] table[x index = {\col}, y expr={6 * (\thisrowno{0})}] {csv/burgers_characteristics/burgers_chars_0.05.csv};
+        }
+
+       	\addplot[seagreen, ultra thick, smooth] table[x index={1},y index={0}] {csv/burgers_characteristics/burgers_u_0.05.csv};
+
+
+	\nextgroupplot[
+		standard,
+		height=0.230\textwidth,
+		width=0.230\textwidth,
+        ymin=-0.8,
+        ymax=1.4,
+        xmin=0.2,
+        xmax=0.8,
+        ytick={0},
+		ymajorgrids=true,
+		ymajorticks=false,
+		xmajorticks=false,
+		xticklabels={,,},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend style={
+			at={(2.20,1.00)},inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+        \foreach \col in {1,...,25}{
+            % \pgfmathtruncatemacro\first{\col * 2}
+            % \pgfmathtruncatemacro\second{\col * 2 + 1}
+            \addplot[steelblue, very thick, smooth] table[x index = {\col}, y expr={6 * (\thisrowno{0})}] {csv/burgers_characteristics/burgers_chars_0.1.csv};
+        }
+
+       	\addplot[seagreen, ultra thick, smooth] table[x index={1},y index={0}] {csv/burgers_characteristics/burgers_u_0.1.csv};
+
+
+	\nextgroupplot[
+		standard,
+		height=0.230\textwidth,
+		width=0.230\textwidth,
+        ymin=-0.8,
+        ymax=1.4,
+        xmin=0.2,
+        xmax=0.8,
+		yticklabel pos = right,
+		ytick={0},
+		ytick style = {draw= {none}},
+		ymajorgrids=true,
+		xmajorticks=false,
+		xticklabels={,,},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend style={
+			at={(2.20,1.00)},inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+        \foreach \col in {1,...,25}{
+            % \pgfmathtruncatemacro\first{\col * 2}
+            % \pgfmathtruncatemacro\second{\col * 2 + 1}
+            \addplot[orange, very thick, smooth] table[x index = {\col}, y expr={6 * (\thisrowno{0})}] {csv/burgers_characteristics/burgers_chars_0.159.csv};
+        }
+        % \addplot[orange, very thick, smooth] table[x index = {6},y index={0}] {csv/burgers_characteristics/burgers_chars_0.159.csv};
+       	\addplot[rust, ultra thick, smooth,] table[x index={1},y index={0}] {csv/burgers_characteristics/burgers_u_0.159.csv};
+
+\end{groupplot}
+
+\node (title) at ($(group c2r1.center)!0.5!(group c3r1.center)+(0,-1.9cm)$) {\Large $\xlongrightarrow[]{\quad \mathrm{time} \quad}$};
+
+\end{tikzpicture}

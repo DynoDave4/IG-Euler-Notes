@@ -1,0 +1,55 @@
+\begin{tikzpicture}
+	\begin{scope}[xshift = -0.00\textwidth]
+		\draw[silver, ultra thick, ->] (-0.5, 0) -- (3, 0);
+		\draw[silver, ultra thick, ->] (0, -0.5) -- (0, 3);
+
+		% \draw[orange, dashed, ultra thick, ->] (1.75, 0) -- (3.90, 5);
+		% \draw[orange, dashed, ultra thick, ->] (1.5, 0) -- (3.80, 5);
+		% \draw[orange, dashed, ultra thick, ->] (1.25, 0) -- (3.70, 5);
+		% \draw[orange, dashed, ultra thick, ->] (1, 0) -- (3.6, 5);
+
+		% \draw[orange, dashed, ultra thick, ->] (2.25, 0) -- (4.5, 5);
+		% \draw[orange, dashed, ultra thick, ->] (2.5, 0) -- (5.0, 5);
+		% \draw[orange, dashed, ultra thick, ->] (2.75, 0) -- (5.5, 5);
+		% \draw[orange, dashed, ultra thick, ->] (3, 0) -- (6.0, 5);
+
+		\draw[rust, ultra thick, ->] (1, 0) -- (2, 2.5);
+
+		\node[] at (1,-0.375) {$x$};
+		\draw[silver, very thick] (1,-0.125) -- (1,0.125);
+		\node[] at (-0.25,2.5) {$t$};
+		\node[] at (2.725,2.725) {$(\diff_t(x), t)$};
+		\draw[silver, very thick] (-0.125,2.5) -- (0.125,2.5);
+		\node[] at (2.075,-0.375) {$\diff_t(x)$};
+		\draw[silver, very thick] (2,-0.125) -- (2,0.125);
+	\end{scope}
+
+
+	\node[draw=steelblue, ultra thick] at (3.650,-1.00) {$\diff_t(x) \coloneqq x + t u_0(x)$};
+
+	\begin{scope}[xshift = 0.480\textwidth]
+		\draw[silver, ultra thick, ->] (-0.5, 0) -- (3, 0);
+		\draw[silver, ultra thick, ->] (0, -0.5) -- (0, 3);
+
+		\draw[orange, dashed, ultra thick, ->] (0.80, 0) -- (1.95, 2.5);
+		\draw[orange, dashed, ultra thick, ->] (0.60, 0) -- (1.85, 2.5);
+		\draw[orange, dashed, ultra thick, ->] (0.40, 0) -- (1.75, 2.5);
+		\draw[orange, dashed, ultra thick, ->] (0.20, 0) -- (1.65, 2.5);
+
+		\draw[orange, dashed, ultra thick, ->] (1.2, 0) -- (2.2, 2.5);
+		\draw[orange, dashed, ultra thick, ->] (1.4, 0) -- (2.5, 2.5);
+		\draw[orange, dashed, ultra thick, ->] (1.6, 0) -- (2.9, 2.5);
+		\draw[orange, dashed, ultra thick, ->] (1.8, 0) -- (3.5, 2.5);
+
+		\draw[silver, ultra thick, ->] (1, 0) -- (2, 2.5);
+
+		\node[] at (1,-0.375) {$x$};
+		\draw[silver, very thick] (1,-0.125) -- (1,0.125);
+		\node[] at (-0.25,2.5) {$t$};
+		\node[] at (2.725,2.725) {$(\diff_t(x), t)$};
+		\draw[silver, very thick] (-0.125,2.5) -- (0.125,2.5);
+		\node[] at (2.075,-0.375) {$\diff_t(x)$};
+		\draw[silver, very thick] (2,-0.125) -- (2,0.125);
+	\end{scope}
+
+\end{tikzpicture}

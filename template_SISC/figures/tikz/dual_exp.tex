@@ -1,0 +1,142 @@
+\begin{tikzpicture}
+
+\node[] at (3.6,1.50) (gradmap) {\Large $\xrightarrow[]{\phantom{(}\nabla \bpot\phantom{)^{-1}}}$};
+\node[] at (8.6,1.50) (gradmap) {\Large $\xrightarrow[]{(\nabla \bpot)^{-1}}$};
+\node[] at (6.25,3.10) (expformula) {\centering ${\color{darksilver} \DExp{{\color{black}\psi}}{{\color{orange} \diff}}{{\color{steelblue} U}}} \coloneqq {\color{darksilver} \nabla \psi^{-1}\Big(}{\color{rust}\nabla \psi(\diff)} {\color{seagreen} +} {\color{darksky} \left[\cnst{D}^2\psi\left(\diff\right)\right]U} {\color{darksilver}\Big)}$};
+\begin{groupplot}[
+	compat=1.8,
+	group style={group size=4 by 1,
+	horizontal sep=2.30cm,
+    vertical sep=0.5cm,},
+	]
+
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\bar{\diff}$},
+		ylabel={$\diff^{\prime}$},
+		% label style={font=\Large},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=-0.10,
+        ymax=0.4,
+        xmin=0.20,
+        xmax=0.6,
+        % xticklabels={},
+		xmajorticks=false,
+		ymajorticks=false,
+		ytick={},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		scaled y ticks=false,
+		]	
+
+	 	\addplot+[mark=none,
+        domain=0.15:1.25,
+        samples=100,
+        pattern=dots,
+        pattern color=seagreen]{-5} \closedcycle;
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+		
+		\node[draw,circle, orange, very thick] at (axis cs: 0.25,0.25) (initpos) {};
+		\draw[steelblue, ultra thick, -latex] (axis cs: 0.25,0.25) -- (axis cs: 0.325,0.2);
+
+		% result of primal exp
+%		\node[draw,circle, seagreen, very thick] at (axis cs: 0.51175,0.0755) (pfinalpos) {};
+
+%        	\addplot[seagreen,very thick,dashed] table[x index={1},y index={2}, col sep=comma] {../../code/out/phase_space_alpha_0.0.txt};
+
+		% result of dual exp
+% 		\node[draw,circle, seagreen, very thick] at (axis cs: 0.51175,0.135315) (dfinalpos) {};
+% 
+%        	\addplot[seagreen,very thick,dashed] table[x index={1},y index={2}, col sep=comma] {../../code/out/phase_space_alpha_0.1.txt};
+% 
+
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\partial_{\bar{\diff}} \psi(\diff)$},
+		ylabel={$\partial_{\diff^{\prime}} \psi(\diff)$},
+		% label style={font=\Large},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=-0.70,
+        ymax=-0.1,
+        xmin=0.10,
+        xmax=0.70,
+        % xticklabels={},
+		xmajorticks=false,
+		ymajorticks=false,
+		ytick={},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		scaled y ticks=false,
+		]	
+
+
+		\node[draw,circle,rust,very thick] at (axis cs: 0.25,-0.15) (initpos) {};
+
+		\draw[darksky, ultra thick, -latex] (axis cs: 0.25,-0.15) -- (axis cs: 0.325,-0.28);
+
+		\node[draw,circle,seagreen,very thick] at (axis cs: 0.51175,-0.6037) (finalpos) {};
+% 
+		\addplot[seagreen,very thick,dashed] table[x index={1},y index={2}, col sep=comma] {code/out/dual_phase_space_alpha_0.1.txt};
+% 
+
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\bar{\diff}$},
+		ylabel={$\diff^{\prime}$},
+		% label style={font=\Large},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=-0.10,
+        ymax=0.4,
+        xmin=0.20,
+        xmax=0.6,
+        % xticklabels={},
+		xmajorticks=false,
+		ymajorticks=false,
+		ytick={},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		scaled y ticks=false,
+		]	
+
+	 	\addplot+[mark=none,
+        domain=0.15:1.25,
+        samples=100,
+        pattern=dots,
+        pattern color=seagreen]{-5} \closedcycle;
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+		
+		\node[draw,circle, orange, very thick] at (axis cs: 0.25,0.25) (initpos) {};
+		\draw[steelblue, ultra thick, -latex] (axis cs: 0.25,0.25) -- (axis cs: 0.325,0.2);
+
+		% result of primal exp
+		% \node[draw,circle, seagreen, very thick] at (axis cs: 0.51175,0.0755) (pfinalpos) {};
+
+		% result of dual exp
+		\node[draw,circle, darksilver, very thick] at (axis cs: 0.51175,0.135315) (dfinalpos) {};
+
+       	\addplot[darksilver,very thick,dashed] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.1.txt};
+
+       	% \addplot[seagreen,very thick,dashed] table[x index={1},y index={2}, col sep=comma] {../../code/out/phase_space_alpha_0.0.txt};
+
+
+
+	\end{groupplot}
+
+\end{tikzpicture}

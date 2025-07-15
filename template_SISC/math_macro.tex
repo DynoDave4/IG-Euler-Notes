@@ -1,0 +1,156 @@
+%=================================================
+% Math macros
+%=================================================
+
+%=============
+% Generalities
+%=============
+\usepackage{mathtools}
+\usepackage{stackengine}
+\usepackage{fixmath}
+\usepackage{xcolor}
+\usepackage{MnSymbol}
+
+
+%\usepackage{was}
+%\DeclareMathAlphabet{\mathbold}{OML}{cmm}{b}{it}
+\mathtoolsset{centercolon}  % Makes := typeset correctly for definitions
+
+%%% Equation numbering
+%\numberwithin{equation}{section} 
+
+%%% Annotations
+\newcommand{\notate}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+%==============
+% Symbols
+%==============
+\let\oldphi\phi
+\let\oldeps\epsilon
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\eps}{\varepsilon}
+
+%==============
+% Constants
+%==============
+
+% Set constants upright
+\newcommand{\cnst}[1]{\mathrm{#1}}  
+\newcommand{\econst}{\mathrm{e}}
+
+\newcommand{\zerovct}{\vct{0}} % Zero vector
+\newcommand{\Id}{\mathbf{I}} % Identity matrix
+\newcommand{\onemtx}{\bm{1}}
+\newcommand{\zeromtx}{\bm{0}}
+
+%==============
+% Sets
+%==============
+\providecommand{\mathbbm}{\mathbb} % In case we don't load bbm
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Reals, complex, naturals
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\K}{\mathbbm{K}}
+\newcommand{\N}{\mathbbm{N}}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+%==============
+% Probability
+%==============
+\newcommand{\Prob}{\operatorname{\mathbbm{P}}}
+\newcommand{\Expect}{\operatorname{\mathbb{E}}}
+
+%==============
+% Vectors and matrices 
+%==============
+\newcommand{\vct}[1]{\mathbold{#1}}
+\newcommand{\mtx}[1]{\mathbold{#1}}
+\newcommand{\tp}{{T}}
+\newcommand{\ad}{{*}}
+
+\newcommand{\mrange}{\operatorname{range}}
+\newcommand{\mnull}{\operatorname{null}}
+\newcommand{\trace}{\operatorname{tr}}
+
+%==============
+% Differential Geometry
+%==============
+\newcommand{\DExp}[3]{\operatorname{Exp}_{\left(#2\right)}^{#1} \left(#3\right)}
+
+\newcommand{\Exp}[2]{\operatorname{Exp}_{\left(#1\right)}\left(#2\right)}
+
+\newcommand{\Tangent}[2]{T_{#1}{#2}}
+
+\newcommand{\manif}{\mathcal{M}}
+\newcommand{\ambient}{\mathcal{A}}
+\newcommand{\extended}{\mathcal{E}}
+
+%==============
+% Information Geometry
+%==============
+
+\newcommand{\Diff}{\operatorname{Diff}}
+\newcommand{\diff}{\Phi}
+\newcommand{\deriv}[1]{#1^\prime}
+
+\newcommand{\bpot}{\psi}
+\newcommand{\emb}{\xi}
+
+% Bregman divergence
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\newcommand{\Div}[1]{\mathbb{D}_{#1}\infdivx}
+
+%==============
+% PDEs
+%==============
+\newcommand{\divergence}{\operatorname{div}}
+% Differential operator
+\newcommand\D{\mathop{}\cnst{d}}
+% variation
+\newcommand{\variation}{\delta}
+\newcommand{\pdedomain}{\Omega}
+
+%==============
+% Relation Symbols
+%==============
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+%==============
+% Information geometric regularization
+%==============
+\newcommand{\Energy}{E}
+\newcommand{\Pressure}{P}
+\newcommand{\energy}{e}
+\newcommand{\pressure}{p}
+
+\newcommand{\HHop}{\mathcal{H}}
+\newcommand{\HHpo}{\hat{\mathcal{H}}}
+
+%==============
+% Column and Row divergence operators
+%==============
+\newcommand{\cdiv}{\overset{\downarrow}{\operatorname{div}}}
+\newcommand{\rdiv}{\overset{\rightarrow}{\operatorname{div}}}
+
+%==============
+% Canceling
+%==============
+\newcommand\Ccancel[2][black]{
+    \let\OldcancelColor\CancelColor
+    \renewcommand\CancelColor{\color{#1}}
+    \cancel{#2}
+    \renewcommand\CancelColor{\OldcancelColor}
+}
+
+
+%Auto-numbering
+% \mathtoolsset{showonlyrefs}
+\usepackage{autonum}

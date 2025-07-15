@@ -1,0 +1,107 @@
+\begin{tikzpicture}[scale=0.935]
+
+\begin{scope}[xshift=0.001\textwidth]
+% Cylinder dimensions
+\def\radius{1}
+\def\height{2}
+\def\circheight{1.25}
+
+% Draw the interior
+\fill[lightsilver, opacity=0.4] 
+  (\radius, \height) -- 
+  (\radius, \height) arc[start angle=-0, end angle=-180, x radius=\radius cm, y radius=0.5cm] --
+  (\radius, \height) arc[start angle=0, end angle=180, x radius=\radius cm, y radius=0.5cm];
+
+\draw[thick, rust] (\radius, \circheight) arc[start angle=0, end angle=180, x radius=\radius cm, y radius=0.5cm];
+
+\draw[thick, darksky] (\radius, 0) arc[start angle=0, end angle=180, x radius=\radius cm, y radius=0.5cm];
+
+% Draw the lateral surface
+\fill[steelblue, opacity=0.6] 
+  (\radius, \height) -- 
+  (\radius, 0) arc[start angle=-0, end angle=-180, x radius=\radius cm, y radius=0.5cm] --
+  (-\radius, \height) arc[start angle=-180, end angle=-0, x radius=\radius cm, y radius=0.5cm];
+
+% Draw the bottom ellipse
+\draw[thick, darksky] (\radius, 0) arc[start angle=-0, end angle=-180, x radius=\radius cm, y radius=0.5cm];
+
+% Draw the vertical sides
+\draw[thick, darksky] (\radius, 0) -- (\radius, \height);
+\draw[thick, darksky] (-\radius, 0) -- (-\radius, \height);
+
+% Draw the top ellipse
+\draw[thick, darksky] (0, \height) ellipse (\radius cm and 0.5cm);
+
+% Draw the submanifold
+\draw[thick, rust] (\radius, \circheight) arc[start angle=-0, end angle=-180, x radius=\radius cm, y radius=0.5cm];
+\end{scope}
+
+\begin{scope}
+\def\circheight{1.25}
+% Cylinder dimensions
+\node at (0.110\textwidth, \circheight) {\color{rust} \Huge $\rightarrow$};
+\end{scope}
+
+\begin{scope}[xshift = 0.220\textwidth]
+% Cylinder dimensions
+\def\radius{1}
+\def\height{2}
+\def\circheight{1.25}
+% Draw the submanifold
+\draw[thick, rust] (\radius, \circheight) arc[start angle=0, end angle=180, x radius=\radius cm, y radius=0.5cm];
+\draw[thick, rust] (\radius, \circheight) arc[start angle=-0, end angle=-180, x radius=\radius cm, y radius=0.5cm];
+\end{scope}
+
+\begin{scope}[xshift = 0.400\textwidth]
+	\begin{scope}
+		% Draw the positive half plane
+		\fill[steelblue, opacity=0.6] (-1.2, 0.5) -- (2.8, 0.5) -- (2.8, 3) -- (-1.2, 3) -- cycle;
+
+		% Draw the boundary
+		\draw[thick, darksky] (-1.2, 0.5) -- (2.8, 0.5);
+
+		% Draw the coordinate axes
+		\draw[->, thick] (-0.5, 0) -- (2.5, 0);
+		\draw[->, thick] (0, -0.5) -- (0, 2.5);
+
+		\draw[] (-1.2, -1.0) -- (2.8, -1.0) -- (2.8, 3) -- (-1.2, 3) -- cycle;
+		\node at (-0.2,0.30) {\color{darksky} $0$};
+
+		% Draw the boundary
+		\draw[thick, rust] (-1.2, 1.25) -- (2.8, 1.25);
+		\node at (-0.6,0.95) {\color{rust} $x_2 - x_1$};
+
+		\node at (1.6,- 0.4) {$\diff(x_2) + \diff(x_1)$};
+		\node at (-0.0, 2.7) { $\diff(x_2) - \diff(x_1)$};
+	\end{scope}
+
+	\begin{scope}
+	\def\circheight{1.25}
+	% Cylinder dimensions
+	\node at (0.245\textwidth, \circheight) {\color{rust} \Huge $\rightarrow$};
+	\end{scope}
+
+
+	\begin{scope}[xshift = 0.370\textwidth]
+		% Draw the coordinate axes
+		\draw[->, thick] (-0.5, 0) -- (2.5, 0);
+		\draw[->, thick] (0, -0.5) -- (0, 2.5);
+
+		\draw[] (-1.2, -1.0) -- (2.8, -1.0) -- (2.8, 3) -- (-1.2, 3) -- cycle;
+
+		% Draw the boundary
+		\draw[thick, rust] (-1.2, 1.25) -- (2.8, 1.25);
+		\node at (-0.6,0.95) {\color{rust} $x_2 - x_1$};
+
+		% \node at (-0.2,0.30) {\color{darksky} $0$};
+		% \draw[thick, darksky] (-1.2, 0.5) -- (2.8, 0.5);
+
+		\node at (1.6,- 0.4) {$\diff(x_2) + \diff(x_1)$};
+		\node at (-0.0, 2.7) { $\diff(x_2) - \diff(x_1)$};
+	\end{scope}
+\end{scope}
+
+
+
+
+\end{tikzpicture}

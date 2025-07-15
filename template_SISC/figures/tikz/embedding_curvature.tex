@@ -1,0 +1,50 @@
+\begin{tikzpicture}
+
+	\begin{scope}
+		\draw [-stealth, darksilver, thick] (0.0, 1.25) -> (4, 1.25);
+		\draw [-stealth, darksilver, thick] (1.25, 0.0) -> (1.25, 3);
+		\draw [steelblue, thick] (1.5, 1.5) circle (1);
+		\draw [-stealth, joshua, dashed, thick] (1.5, 2.5) -> (1.5 + 1.0, 2.5);
+		\draw [-stealth, darksky, thick, bend right=50] (1.5, 2.5) to ({1.5 + sin(30)}, {1.5 + cos(30)});
+		\draw [-stealth, orange, dotted, thick] ({1.5 + sin(30)}, {1.5 + cos(30)}) -> ({1.0 + 1.5 + sin(30)}, {1.5 + cos(30)});
+		\draw [-{stealth}{stealth}, seagreen, thick] ({1.0 + 1.5 + sin(30)}, {1.5 + cos(30)}) -> ({1.5 + sin(61)}, {1.5 + cos(61)});
+		\draw [-stealth, rust, thick] ({1.5 + sin(30)}, {1.5 + cos(30)}) -> ({1.5 + sin(61)}, {1.5 + cos(61)});
+		\node[darksilver] at (0.5, 2.5) {$\R^2$};
+		\node[draw, steelblue] at (3.5, 2.0) {$S^1$};
+		\node at (2.5, 1.00) {$x$};
+		\node at (2.5, 1.00) {$x$};
+		\node at (1.00, 2.0) {$y$};
+	\end{scope}
+
+	\begin{scope}[xshift=42.5,yshift=35]
+		\node[text width=4.25cm] at (5.3, 0.25) {{\baselineskip=1pt $\emb(X)$ to $\emb(X + \epsilon V)$ \newline tangent vector $U$ at $\xi(X)$ \newline parallel transport in {\color{darksilver}$\R^2, \extended$} \newline projection onto {\color{steelblue} $\Tangent{}{S^1}$, $\Tangent{}{\extended}$}} \newline parallel transport in {\color{steelblue} $S^1$, $\extended$}\par};
+		\draw [-stealth, darksky, thick, bend left=50] (2.60, 1.0) to ({3.05}, {1.0});
+		\draw [-stealth, joshua, dashed, thick] (2.60, 0.65) to ({3.05}, {0.65});
+		\draw [-stealth, orange, dotted, thick] (2.60, 0.20) to ({3.05}, {0.20});
+		\draw [-{stealth}{stealth}, seagreen, thick] (2.60, -0.20) to ({3.05}, {-0.20});
+		\draw [-stealth, rust, thick] (2.60, -0.6) to ({3.05}, {-0.6});
+		% \draw (2.50, 1.30) rectangle (7.25, -0.75);
+	\end{scope}
+
+
+	\begin{scope}[xshift=255]
+		\draw [-stealth, darksilver, thick] (0.0, 1.25) -> (4, 1.25);
+		\draw [-stealth, darksilver, thick] (1.25, 0.0) -> (1.25, 3);
+		\draw [steelblue, thick] (1.25, 1.25) -- (3.0, 3.0);
+		% \draw [steelblue, thick, dashed] (0.5, -0.0) -- (1.25, 0.75);
+		% \draw [darksilver, thick] (1.20, 0.75) -- (1.30, 0.75);
+		% \node at (1.50, 0.75) {\footnotesize $- \Id$};
+		\draw [-stealth, joshua, dashed, thick] (2.6, 2.6) -> (2.2, 2.2);
+		\draw [-stealth, darksky, thick, bend right=50] (2.6, 2.6) to (2.05, 2.05);
+		\draw [-stealth, orange, dotted, thick] (2.05, 2.05) -> (2.15, 1.35);
+		\draw [-{stealth}{stealth}, seagreen, thick] (2.15, 1.35) -> (1.75, 1.75);
+		\draw [-stealth, rust, thick] (2.05, 2.05) -> (1.75, 1.75);
+		% \node[draw, steelblue, dashed] at (0.5, 0.75) {\small $\ambient$};
+		\node[darksilver] at (0.5, 2.5) {$\extended$};
+		\node[draw, steelblue] at (3.5, 2.0) {$\manif$};
+		\node at (2.5, 1.00) {$\diff$};
+		\node at (0.50, 2.0) {$\deriv{\diff} = \partial_x \diff$};
+	\end{scope}
+
+
+\end{tikzpicture}

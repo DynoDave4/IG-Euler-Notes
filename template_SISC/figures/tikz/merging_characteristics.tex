@@ -1,0 +1,134 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=4 by 1,
+	horizontal sep=0.60cm,
+    vertical sep=0.5cm,},
+	]
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\diff_t(x)$},
+		ylabel style={yshift=-6.0pt},	
+		ylabel={$t$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=-0.05,
+        ymax=1.0,
+        xmin=-0.05,
+        xmax=1.0,
+        xticklabels={{$x_1$}, {$x_2$}},
+		%xticklabel style={above},
+        yticklabels={{$0$}},
+		% xmajorticks=false,
+		xtick={0,0.5},
+		ytick={0},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+% 		legend style={
+% 			at={(2.20,1.00)},inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+        \addplot[steelblue,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0_medium.txt};
+        \addplot[steelblue,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0_medium.txt};
+		
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+ 		xlabel={$\diff_t(x)$},
+		ylabel={},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=-0.05,
+        ymax=1.0,
+        xmin=-0.05,
+        xmax=1.0,
+        xticklabels={{$x_1$}, {$x_2$}},
+		%xticklabel style={above},
+        yticklabels={},
+		% xmajorticks=false,
+		xtick={0,0.5},
+		ytick={0},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+% 		legend style={
+% 			at={(2.20,1.00)},inner sep=3pt,anchor=south,legend columns=4,legend cell align={left}, draw=none,fill=none},
+		]	
+
+        \addplot[orange,very thick] table[x index={1},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0_long.txt};
+        \addplot[orange,very thick] table[x index={2},y index={0}, col sep=comma] {code/out/characteristics_alpha_0.0_long.txt};
+		
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+\nextgroupplot[
+		standard,
+ 		xlabel={$\diff_t(x_1)$},
+		ylabel={$\diff_t(x_2)$},
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=0.775,
+        ymax=2.475,
+        xmin=0.775,
+        xmax=2.475,
+		xtick={0.775},
+        xticklabels={\phantom{{$x_1$}, {$x_2$}}},
+        yticklabels={},
+		ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		]	
+
+		\draw[darksilver] (axis cs: -0.5,-0.5) -- (axis cs: 2.5,2.5);
+
+       	\addplot[steelblue,very thick] table[x expr={1 + \thisrowno{1} - \thisrowno{2}},y expr={ 1 + \thisrowno{1} + \thisrowno{2}}, col sep=comma] {code/out/phase_space_alpha_0.0_medium.txt};
+
+
+
+
+		\addplot+[mark=none,
+		draw=none,
+        domain=-0.0:2.50,
+        samples=100,
+        pattern= dots,
+        area legend,
+        pattern color=darksilver]{x} \closedcycle;
+
+\nextgroupplot[
+		standard,
+ 		xlabel={$\diff_t(x_1)$},
+		ylabel={},
+		height=0.2025\textwidth,
+		width=0.2025\textwidth,
+        ymin=0.775,
+        ymax=2.475,
+        xmin=0.775,
+        xmax=2.475,
+		xtick={0.775},
+        xticklabels={\phantom{{$x_1$}, {$x_2$}}},
+        yticklabels={},
+		ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		]	
+
+		\draw[darksilver] (axis cs: -0.5,-0.5) -- (axis cs: 2.5,2.5);
+
+       	\addplot[orange,very thick] table[x expr={1 + \thisrowno{1} - \thisrowno{2}},y expr={ 1 + \thisrowno{1} + \thisrowno{2}}, col sep=comma] {code/out/phase_space_alpha_0.0_long.txt};
+
+		\addplot+[mark=none,
+		draw=none,
+        domain=-0.0:2.50,
+        samples=100,
+        pattern= dots,
+        area legend,
+        pattern color=darksilver]{x} \closedcycle;
+      
+	\end{groupplot}
+\end{tikzpicture}

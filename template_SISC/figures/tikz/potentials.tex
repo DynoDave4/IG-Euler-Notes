@@ -1,0 +1,303 @@
+\pgfplotsset{
+    % this *defines* a custom colormap ...
+    colormap={rusts}{
+        color=(lightsilver)
+        color=(rust)
+    }, 
+    colormap={joshuas}{
+        color=(lightsilver)
+        color=(joshua)
+    }, 
+    colormap={darkskys}{
+        color=(lightsilver)
+        color=(darksky)
+    }, 
+    colormap={seagreens}{
+        color=(lightsilver)
+        color=(seagreen)
+    }, 
+}
+
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=4 by 1,
+	horizontal sep=0.115cm,
+    vertical sep=0.5cm,},
+	]
+	\nextgroupplot[
+		standard,
+		title={Nominal, $t = 0.05$},
+		% xlabel={Iter},
+ 		xlabel={$\diff_t$},
+ 		ylabel={$\partial_x \diff_t$},
+		% ylabel={$D\diff_t := \left(\diff_t(x_2) - \diff_t(x_1)\right) / 2$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.225\textwidth,
+		width=0.225\textwidth,
+        ymin=-0.425,
+        ymax=0.425,
+        xmin=0.2,
+        xmax=1.05,
+        % xticklabels={},
+		xtick={0.575},
+        xticklabels={\phantom{{$x_1$}, {$x_2$}}},
+		xmajorticks=false,
+		ymajorticks=false,
+		zmajorticks=false,
+		ytick={0},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		% scaled y ticks=false,
+		view={0}{90},
+		colormap name=seagreens,
+		% colormap={custommap}{        % Define a custom colormap
+  %       silver;   % Color1 (blue)
+  %       rust},
+		]	
+
+		\def\t{0.05}
+		\addplot3[
+    		contour lua,
+			% contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784, 0.841, 0.9, 0.961, 1.024, 1.089, 1.156, 1.225, 1.296, 1.369, 1.444, 1.521, 1.6, 1.681, 1.764, 1.849, 1.936, 2.025, 2.116, 2.209, 2.304, 2.401, 2.5},
+			contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576,},
+			contour/labels = false,
+			% contour/number=10,
+			samples=75,
+			handler/.style=smooth,
+			domain = 0.0:1.1,
+			thick,
+			y domain = -0.5:0.5,
+			% y domain = 0.0000001:0.5,
+		]{(\t ^ 2) * (1.5^2 + 1^2)/ 2  - \t  * (3/2 * (x - 0.25) - 1 * (y - 0.25)) + 1 / 2 * ((x - 0.25)^2 + (y - 0.25)^2)};
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+
+       	\addplot[very thick, dashed, lightsilver] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0.txt};
+       	\addplot[steelblue,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0_short.txt};
+
+
+		\addplot+[mark=none,
+		draw=none,
+       domain=-0.0:2.50,
+       samples=100,
+       pattern= dots,
+       area legend,
+       pattern color=darksilver]{-10} \closedcycle;
+
+	\nextgroupplot[
+		standard,
+		title={Nominal, $t = 0.45$},
+		% xlabel={Iter},
+ 		xlabel={$\diff_t$},
+		% ylabel={$D\diff_t := \left(\diff_t(x_2) - \diff_t(x_1)\right) / 2$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.225\textwidth,
+		width=0.225\textwidth,
+        ymin=-0.425,
+        ymax=0.425,
+        xmin=0.2,
+        xmax=1.05,
+		ylabel shift=-125pt,
+        % xticklabels={},
+		xtick={0.575},
+        xticklabels={\phantom{{$x_1$}, {$x_2$}}},
+		yticklabel pos=right,
+		xmajorticks=false,
+		ymajorticks=false,
+		zmajorticks=false,
+		ytick={0},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		% scaled y ticks=false,
+		view={0}{90},
+		colormap name=rusts,
+		% colormap={custommap}{        % Define a custom colormap
+  %       silver;   % Color1 (blue)
+  %       rust},
+		]	
+
+		\def\t{0.45}
+		\addplot3[
+    		contour lua,
+			% contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784, 0.841, 0.9, 0.961, 1.024, 1.089, 1.156, 1.225, 1.296, 1.369, 1.444, 1.521, 1.6, 1.681, 1.764, 1.849, 1.936, 2.025, 2.116, 2.209, 2.304, 2.401, 2.5},
+			contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784,},
+			contour/labels = false,
+			% contour/number=10,
+			samples=75,
+			handler/.style=smooth,
+			domain = 0.0:1.1,
+			thick,
+			y domain = -0.5:0.5,
+			% y domain = 0.0000001:0.5,
+		]{(\t ^ 2) * (1.5^2 + 1^2)/ 2  - \t  * (3/2 * (x - 0.25) - 1 * (y - 0.25)) + 1 / 2 * ((x - 0.25)^2 + (y - 0.25)^2)};
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+
+       	\addplot[very thick, dashed, lightsilver] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0.txt};
+       	\addplot[orange,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0_long.txt};
+
+
+		\addplot+[mark=none,
+		draw=none,
+       domain=-0.0:2.50,
+       samples=100,
+       pattern= dots,
+       area legend,
+       pattern color=darksilver]{-10} \closedcycle;
+	
+	\nextgroupplot[
+		standard,
+		title={Reg., $t=0.05$},
+		% xlabel={Iter},
+ 		xlabel={$\diff_t$},
+		% ylabel={$D\diff_t := \left(\diff_t(x_2) - \diff_t(x_1)\right) / 2$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.22\textwidth,
+		width=0.22\textwidth,
+        ymin=-0.425,
+        ymax=0.425,
+        xmin=0.2,
+        xmax=1.05,
+		ylabel shift=-125pt,
+        % xticklabels={},
+		xtick={0.575},
+        xticklabels={\phantom{{$x_1$}, {$x_2$}}},
+		yticklabel pos=right,
+		xmajorticks=false,
+		ymajorticks=false,
+		zmajorticks=false,
+		ytick={0},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		% scaled y ticks=false,
+		view={0}{90},
+		colormap name=joshuas,
+		% colormap={custommap}{        % Define a custom colormap
+  %       silver;   % Color1 (blue)
+  %       rust},
+		]	
+
+
+		% \addplot3[surf,
+		% 	domain=-0.1:0.7,	
+		% 	samples=200,
+		% ] {110 * (x - 0.25)^2 + (y - 0.25)^2};
+
+
+		\def\t{0.05}
+		% minimize   0.1(x - 0.25) + (x - 0.25)^2 / 2 - 0.005  log(x)
+		\def\mval{-0.0089412}
+		\def\alf{0.01}
+		\addplot3[
+    		contour lua,
+			% contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784, 0.841, 0.9, 0.961, 1.024, 1.089, 1.156, 1.225, 1.296, 1.369, 1.444, 1.521, 1.6, 1.681, 1.764, 1.849, 1.936, 2.025, 2.116, 2.209, 2.304, 2.401, 2.5},
+			contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784,},
+			contour/labels = false,
+			% contour/number=10,
+			samples=75,
+			handler/.style=smooth,
+			domain = 0.0:1.1,
+			thick,
+			% y domain = -0.5:0.5,
+			y domain = 0.0000001:0.5,
+		]{(\t ^ 2) * (1.5^2)/ 2 + \mval - \t  * (3/2 * (x - 0.25) - 1 * (y - 0.25)) + 1 / 2 * ((x - 0.25)^2 + (y - 0.25)^2) - \alf * (ln(y / 0.25) - y / 0.25)};
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+       	\addplot[joshua,very thick, dashed, lightsilver] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.01.txt};
+
+       	\addplot[joshua,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.01_short.txt};
+       	% \addplot[steelblue,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0.txt};
+
+		\addplot+[mark=none,
+		draw=none,
+       domain=-0.0:2.50,
+       samples=100,
+       pattern= dots,
+       area legend,
+       pattern color=darksilver]{-10} \closedcycle;
+
+	\nextgroupplot[
+		standard,
+		title={Reg., $t=0.45$},
+		% xlabel={Iter},
+ 		xlabel={$\diff_t$},
+		% ylabel={$D\diff_t := \left(\diff_t(x_2) - \diff_t(x_1)\right) / 2$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.225\textwidth,
+		width=0.225\textwidth,
+        ymin=-0.425,
+        ymax=0.425,
+        xmin=0.2,
+        xmax=1.05,
+		% ylabel shift=-125pt,
+        % xticklabels={},
+		xtick={0.575},
+        xticklabels={\phantom{{$x_1$}, {$x_2$}}},
+		yticklabel pos=right,
+		xmajorticks=false,
+		% ymajorticks=false,
+		zmajorticks=false,
+		ytick={0},
+		yticklabels={$0\:$},
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		% scaled y ticks=false,
+		view={0}{90},
+		colormap name=joshuas,
+		% colormap={custommap}{        % Define a custom colormap
+  %       silver;   % Color1 (blue)
+  %       rust},
+		]	
+
+
+		% \addplot3[surf,
+		% 	domain=-0.1:0.7,	
+		% 	samples=200,
+		% ] {110 * (x - 0.25)^2 + (y - 0.25)^2};
+
+
+		\def\t{0.45}
+		\def\mval{0.052583}
+		\def\alf{0.01}
+		\addplot3[
+    		contour lua,
+			% contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784, 0.841, 0.9, 0.961, 1.024, 1.089, 1.156, 1.225, 1.296, 1.369, 1.444, 1.521, 1.6, 1.681, 1.764, 1.849, 1.936, 2.025, 2.116, 2.209, 2.304, 2.401, 2.5},
+			contour/levels={0.001, 0.004,0.009,0.016, 0.025, 0.036, 0.049, 0.064, 0.081, 0.1, 0.121, 0.144, 0.169, 0.196, 0.225, 0.256, 0.289, 0.324, 0.361, 0.4, 0.441, 0.484, 0.529, 0.576, 0.625, 0.676, 0.729, 0.784,},
+			contour/labels = false,
+			% contour/number=10,
+			samples=75,
+			handler/.style=smooth,
+			domain = 0.0:1.1,
+			thick,
+			% y domain = -0.5:0.5,
+			y domain = 0.0000001:0.5,
+		]{(\t ^ 2) * (1.5^2)/ 2 + \mval - \t  * (3/2 * (x - 0.25) - 1 * (y - 0.25)) + 1 / 2 * ((x - 0.25)^2 + (y - 0.25)^2) - \alf * (ln(y / 0.25) - y / 0.25)};
+
+
+		\draw[darksilver] (axis cs: 0.0,0.0) -- (axis cs: 1.5,0.0);
+
+       	\addplot[joshua,very thick, dashed, lightsilver] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.01.txt};
+       	\addplot[joshua,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.01_long.txt};
+
+
+       	% \addplot[steelblue,very thick] table[x index={1},y index={2}, col sep=comma] {code/out/phase_space_alpha_0.0.txt};
+
+		\addplot+[mark=none,
+		draw=none,
+       domain=-0.0:2.50,
+       samples=100,
+       pattern= dots,
+       area legend,
+       pattern color=darksilver]{-10} \closedcycle;
+	\end{groupplot}
+\end{tikzpicture}

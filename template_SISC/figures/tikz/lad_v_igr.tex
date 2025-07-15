@@ -1,0 +1,141 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=4 by 1,
+	horizontal sep=0.045\textwidth,
+    vertical sep=1.05cm,},
+	]
+	\nextgroupplot[
+		title={},
+		standard,
+		% xlabel={$x$},
+		% xlabel style={font=\Large},
+ 		xlabel={$x$},
+		ylabel={$\rho(x, T)$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.202\textwidth,
+		width=0.202\textwidth,
+        ymin=0.0,
+        ymax=8.0,
+        xmin=0.3,
+        xmax=0.7,
+        % yticklabels={{$0$}},
+		xmajorticks=false,
+		ymajorticks=false,
+		xtick={},
+		ytick={},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend style={
+			at={(2.15, 1.5)},inner sep=4pt,anchor=north,legend columns= 3,cells ={align = right}, draw=none,fill=none}, 
+		]	
+
+		\addlegendimage{steelblue, ultra thick}
+		\addlegendimage{orange, ultra thick}
+		\addlegendimage{rust, ultra thick, dash pattern=on 7pt off 1pt}
+		\addlegendimage{empty legend}
+		\addlegendimage{seagreen, ultra thick}
+		\addlegendimage{darksky, ultra thick , dash pattern=on 6pt off 6pt}
+
+		\legend{Unregularized, LAD with $\frac{\alpha}{(\Delta x)^2} = 2.5 $, IGR with $\frac{\alpha}{(\Delta x)^2} = 2.5$, \phantom{placeholder} , LAD with $\frac{\alpha}{(\Delta x)^2} = 250$, IGR with $\frac{\alpha}{(\Delta x)^2} = 250 $};
+		\addplot[orange, ultra thick] table[x index={2},y index={1}] {csv/lad_comparison_oscillation/lad.csv};
+
+
+	\nextgroupplot[
+		standard,
+		title={},
+		xlabel={$x$},
+		ylabel={$\rho(x, T)$},
+	%		xmode=log,
+	%		ymode=log,
+		height=0.202\textwidth,
+		width=0.202\textwidth,
+        ymin=0.0,
+        ymax=8.0,
+        xmin=0.3,
+        xmax=0.7,
+		% xticklabels={{$x_1$}, {$x_2$}},
+		% yticklabels={{$0$}},
+		xmajorticks=false,
+		ymajorticks=false,
+		xtick={},
+		ytick={},
+		% ytick={0}, % ymajorticks=false, enlarge x limits=0.,
+		% enlarge y limits=0.,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		]	
+
+		\addplot[rust, ultra thick, dash pattern=on 7pt off 1pt, dash phase=5pt] table[x index={2},y index={1}] {csv/lad_comparison_oscillation/igr.csv};
+
+	\nextgroupplot[
+		standard,
+		title={},
+		xlabel={$x$},
+		 %xlabel={},
+		ylabel={$u(x,0)$},
+	%		xmode=log,
+	%		ymode=log,
+		height=0.202\textwidth,
+		width=0.202\textwidth,
+        ymin=-0.002,
+        ymax=0.002,
+        xmin=0.0,
+        xmax=1.0,
+		% xticklabels={{$x_1$}, {$x_2$}},
+		% yticklabels={{$0$}},
+		xmajorticks=false,
+		ymajorticks=false,
+		xtick={},
+		ytick={},
+		% ytick={0}, % ymajorticks=false, enlarge x limits=0.,
+		% enlarge y limits=0.,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		]	
+	
+		\addplot[steelblue, very thick, smooth] table[x index={1},y index={0}] {csv/lad_comparison_dissipation/init_u.csv};
+		
+	\nextgroupplot[
+		standard,
+		% xlabel={Iter},
+		title={},
+ 		xlabel={$t$},
+ 		ylabel={Energy},
+		%ylabel={$u(x)$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.202\textwidth,
+		width=0.202\textwidth,
+        ymin=0.0,
+        ymax=0.00000026,
+        xmin=0.0,
+        xmax=1.0,
+       % xticklabels={{$x_1$}, {$x_2$}},
+		%xticklabel style={above},
+        % yticklabels={{$0$}},
+		% xmajorticks=false,
+		% xtick={0,0.5},
+		% ytick={0},
+		ymajorticks=false,
+		xmajorticks=false,
+        yticklabels={{$0$}},
+		% xmajorticks=false,
+        % yticklabels={{$0$}},
+		% xmajorticks=false,
+		%xtick={0.48,0.5, 0.52},
+		ytick={0},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		]	
+
+		\addplot[steelblue, ultra thick] table[x index={1},y index={0}] {csv/lad_comparison_dissipation/rlw.csv};
+		\addplot[rust, ultra thick, , dash pattern=on 7pt off 1pt, dash phase=4.5pt] table[x index={1},y index={0}] {csv/lad_comparison_dissipation/igr_low_alpha.csv};
+		\addplot[darksky, ultra thick, dash pattern=on 6pt off 6pt] table[x index={1},y index={0}] {csv/lad_comparison_dissipation/igr_high_alpha.csv};
+		\addplot[orange, ultra thick] table[x index={1},y index={0}] {csv/lad_comparison_dissipation/lad_low_alpha.csv};
+		\addplot[seagreen, ultra thick] table[x index={1},y index={0}] {csv/lad_comparison_dissipation/lad_high_alpha.csv};
+
+	\end{groupplot}
+\end{tikzpicture}

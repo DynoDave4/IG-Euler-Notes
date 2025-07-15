@@ -1,0 +1,84 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=2 by 1,
+	horizontal sep=0.075\textwidth,
+    vertical sep=0.5cm,},
+	]
+	\nextgroupplot[
+		title={$t = 0.0875$},
+		standard,
+		xlabel={$x$},
+ 		%xlabel={},
+		ylabel={$u(x, t)$},
+% 		xmode=log,
+% 		ymode=log,
+		height=0.415\textwidth,
+		width=0.415\textwidth,
+        ymin=-3.0,
+        ymax=3.0,
+        xmin=0.4,
+        xmax=0.6,
+		% xticklabel=\empty,
+        % yticklabels={{$0$}},
+		% xmajorticks=false,
+		% xtick={0.3,0.5,0.7},
+		% ytick={-4, 0, 4},
+		xtick={0.45,0.5, 0.55},
+		ytick={-2, -1, 0, 1, 2},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+		legend image post style={scale=1.5},
+		legend style={
+			at={(1.10, 1.25)},inner sep=3pt,anchor=north,legend columns= -1,cells ={align = right}, draw=none,fill=none}, 
+		]	
+
+		\addlegendimage{steelblue, line width=1.8pt}
+		\addlegendimage{orange, line width=1.8pt}
+		\addlegendimage{joshua, line width=1.8 pt}
+		\addlegendimage{rust, line width=1.8 pt}
+
+		\legend{Reference solution, LF, LW, LW + IGR};
+		
+
+        
+		\addplot[rust, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/igr_T1.csv};
+		\addplot[orange, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/lf_T1.csv};
+		\addplot[joshua, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/rlw_T1.csv};
+		\addplot[steelblue, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/ref_T1.csv};
+
+		\nextgroupplot[
+			standard,
+			title={$t = 0.75$},
+			xlabel={$x$},
+			 %xlabel={},
+			% ylabel={$t$},
+	% 		xmode=log,
+	% 		ymode=log,
+			height=0.415\textwidth,
+			width=0.415\textwidth,
+			ymin=-1.0,
+			ymax=1.0,
+			xmin=0.4,
+			xmax=0.6,
+			% xticklabels={{$x_1$}, {$x_2$}},
+			% yticklabels={{$0$}},
+			% xmajorticks=false,
+			xtick={0.45,0.5, 0.55},
+			% xticklabel=\empty,
+			ytick={-1.0, -0.5, 0.0, 0.5, 1.0},
+			% ytick={0}, % ymajorticks=false, enlarge x limits=0.,
+			% enlarge y limits=0.,
+			enlarge x limits=0.,
+			enlarge y limits=0.,
+			legend image post style={scale=1.5},
+			legend style={
+				at={(2.15,1.125)},inner sep=4.5pt,anchor=south,legend columns=9,legend cell align={left}, draw=none,fill=none}
+			]	
+	
+			\addplot[rust, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/igr_T2.csv};
+			\addplot[orange, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/lf_T2.csv};
+			\addplot[joshua, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/rlw_T2.csv};
+			\addplot[steelblue, line width=1.8pt] table[x index={2},y index={0}] {csv/1d_sine/ref_T2.csv};
+\end{groupplot}
+\end{tikzpicture}

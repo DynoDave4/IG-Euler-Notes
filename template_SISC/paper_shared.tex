@@ -1,0 +1,74 @@
+% SIAM Shared Information Template
+% This is information that is shared between the main document and any
+% supplement. If no supplement is required, then this information can
+% be included directly in the main document.
+
+
+% Packages and macros go here
+\usepackage{lipsum}
+\usepackage[export]{adjustbox}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{algorithmic}
+\usepackage{cancel}
+\usepackage{caption}
+\input{figure_style}
+% \hypersetup{colorlinks=true,linkcolor=darkrust,citecolor=darkseagreen,urlcolor=darksilver}
+\usepackage{hyperref}
+\usepackage{cleveref}  % Must come AFTER hyperref
+\hypersetup{colorlinks=true,linkcolor=darkrust,citecolor=darkseagreen,urlcolor=darksilver}
+\input{math_macro}
+\graphicspath{{./figures/tikz}}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=cache/]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Project-specific macro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Todo:
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[#1]}}}
+% Math 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\ifpdf
+  \DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
+\else
+  \DeclareGraphicsExtensions{.eps}
+\fi
+
+% Add a serial/Oxford comma by default.
+\newcommand{\creflastconjunction}{, and~}
+
+% Used for creating new theorem and remark environments
+\newsiamremark{remark}{Remark}
+\newsiamremark{hypothesis}{Hypothesis}
+\crefname{hypothesis}{Hypothesis}{Hypotheses}
+\newsiamthm{claim}{Claim}
+
+% Sets running headers as well as PDF title and authors
+\headers{\todo{add title}}{\todo{...} and Florian Sch{\"a}fer}
+
+% Title. If the supplement option is on, then "Supplementary Material"
+% is automatically inserted before the title.
+\title{Information Geometric Regularization Notes} %\thanks{Submitted to the editors DATE.}}
+%\funding{This work was funded by the Fog Research Institute under contract no.~FRI-454.}
+
+% Authors: full names plus addresses.
+\author{ 
+David Winters, Florian Sch{\"a}fer, and Qi Tang}
+
+% \thanks{Georgia Tech  (\email{fts@gatech.edu}).}
+
+\usepackage{amsopn}
+\DeclareMathOperator{\diag}{diag}
+
+
+%%% Local Variables: 
+%%% mode:latex
+%%% TeX-master: "infburgers"
+%%% End: 

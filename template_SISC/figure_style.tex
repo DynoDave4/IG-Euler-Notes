@@ -1,0 +1,51 @@
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{shapes.arrows, patterns, calc}
+\usepackage{tikz-3dplot}
+\usepackage{bbm}
+\ifpdf
+  \DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
+\else
+  \DeclareGraphicsExtensions{.eps}
+\fi
+
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{quantikz}
+\usepackage{siunitx}
+\usetikzlibrary{arrows.meta}
+
+
+\pgfplotsset{ compat=1.18,
+    standard/.style={
+    scale only axis,
+    width=0.5\textwidth,
+    enlarge x limits=0.05,
+    enlarge y limits=0.05,
+    max space between ticks=40,
+    every axis/.append style={font=\normalsize},
+	every legend/.append style={font=\normalsize},
+	every node/.append style={font=\normalsize},	
+	}
+}
+
+%=============
+% Hyperlink colors
+%=============
+% \usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{steelblue}{HTML}{A1BDC7}
+\definecolor{orange}{HTML}{D98C21}
+\definecolor{silver}{HTML}{B0ABA8}
+\definecolor{rust}{HTML}{B8420F}
+\definecolor{seagreen}{HTML}{2E6B69}
+\definecolor{joshua}{HTML}{FBDC7F}
+\definecolor{darksky}{HTML}{154c79}
+
+\colorlet{lightsilver}{silver!30!white}
+\colorlet{darkorange}{orange!85!black}
+\colorlet{darksilver}{silver!85!black}
+\colorlet{darksteelblue}{steelblue!85!black}
+\colorlet{darkrust}{rust!85!black}
+\colorlet{darkseagreen}{seagreen!85!black}

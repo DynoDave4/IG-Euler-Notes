@@ -1,0 +1,66 @@
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=2 by 1,
+	horizontal sep=0.075\textwidth,
+    vertical sep=0.5cm,},
+	]
+			\nextgroupplot[
+				standard,
+				xlabel={$x$},
+				ylabel={$\rho(x, 2)$},
+				height=0.415\textwidth,
+				width=0.415\textwidth,
+				ymin=0.5,
+				ymax=4.5,
+        		xmin=3.0,
+        		xmax=9.0,
+				xtick={4.0, 5.0, 6.0, 7.0, 8.0},
+				ytick={1.0, 2.0, 3.0, 4.0},
+				yticklabels={{$\phantom{-}1$, $2$, $3$, $4$}},
+				% xmajorticks=false,
+				% yticklabels={{$0$}},
+				% xmajorticks=false,
+				% ymajorticks=false,
+				enlarge x limits=0.,
+				enlarge y limits=0.,
+				legend image post style={scale=1.5},
+				legend style={
+					at={(0.95, 1.1)},inner sep=3pt,anchor=north,legend columns= -1,cells ={align = right}, draw=none,fill=none}, 
+				]	
+
+		\addlegendimage{steelblue, line width=1.8pt}
+		\addlegendimage{orange, line width=1.8pt}
+		\addlegendimage{joshua, line width=1.8 pt}
+		\addlegendimage{rust, line width=1.8 pt}
+
+ 		% \legend{Reference solution, LF, LW, LW + IGR};
+
+
+	
+	
+			\addplot[steelblue, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/ref.csv};
+			\addplot[orange, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/lf.csv};
+			\addplot[joshua, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/rlw.csv};
+			\addplot[rust, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/igr.csv};
+		
+	\nextgroupplot[
+		standard,
+ 		xlabel={$x$},
+		height=0.415\textwidth,
+		width=0.415\textwidth,
+        ymin=3.5,
+        ymax=4.1,
+        xmin=3.75,
+        xmax=7.75,
+		xtick={4.0, 5.0, 6.0, 7.0},
+		ytick={3.6, 3.8, 4.0},
+		% ymajorticks=false,
+		enlarge x limits=0.,
+		enlarge y limits=0.,
+	]
+		\addplot[steelblue, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/ref.csv};
+		\addplot[orange, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/lf.csv};
+		\addplot[joshua, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/rlw.csv};
+		\addplot[rust, line width=1.8pt] table[x index={2},y index={1}] {csv/shu_osher/igr.csv};
+	\end{groupplot}
+\end{tikzpicture}
