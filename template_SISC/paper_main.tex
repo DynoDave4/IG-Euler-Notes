@@ -108,7 +108,8 @@ If we extend from Burgers to Euler where $\Phi$ takes values in $\mathbb{R}^n$:
 
 Finally, we want to be able to recover the PDE from the deformation maps $\Phi(x)$ (change back to Eulerian coordinates). This is done via:
 
-\[ u(x) = \dot{\Phi}(x)  \; \textrm{ and } \; \rho(x) = (\det (D\Phi))^{-1} \; \implies \; \int_{\mathbb{R}^d} \log (\det D \Phi ) \; dx = \int_{\mathbb{R}^d} \log (\rho ) \rho \; dx. \]
+\[ u(\Phi(x)) = \dot{\Phi}(x)  \; \textrm{ and } \; \rho(\Phi(x)) = (\det (D\Phi))^{-1}  \]
+\[\implies \; \int_{\mathbb{R}^d} \log (\det D \Phi ) \; dx = \int_{\mathbb{R}^d} \log (\rho ) \rho \; dx.\]
 
 
 \section{Derivation for Flat Geometry}
@@ -129,7 +130,7 @@ In the univariate case, the barrier function is:
 
 \[\psi(\Phi)=\frac{1}{2} \int_{\mathbb{R}}|\Phi(x)-x|^2 \mathrm{~d} x+\alpha \int_{\mathbb{R}}-\log \partial_x \Phi(x) \mathrm{d} x.\]
 
-The article goes on to explicitly solve for Newton's Second Law in terms of the barrier function given above. Because $\psi$ is a linear functional, we need to take variations of the functional and are derived in 3.2.2. The conclusion is the equation:
+The article goes on to explicitly solve for Newton's Second Law in terms of the barrier function given above. Because $\psi$ is a functional, to calculate its derivatives, we need to take variations of the functional and these are derived in 3.2.2. The conclusion is the equation:
 
 \[\left((\cdot)-\alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-2}\left[\partial_x(\cdot)\right]\right)\right)\left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=-2 \alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-3}\left[\partial_x \dot{\Phi}_t\right]^2\right)\]
 
@@ -188,12 +189,141 @@ Instead, we would like to do the same for the dual equations.
 
 \medskip\medskip
 
-\noindent 3. The case of the dual equations:
+\noindent 3. How exactly do we parallel transport on a submanifold?
 
 
 
 
 \section{Multivariate Case}
+
+
+\section{Embedding onto a Submanifold}
+
+In the general ambient space of diffeomorphisms $\mathcal{E}$, $\psi$ is convex, but it is not when we restrict to the submanifold $\mathcal{M}$ consisting of $(\Phi, \, D\Phi)$. To fix this, we will perform parallel transport in $\mathcal{E}$ via $\psi$, and then restrict our path to live in $\mathcal{M}$. This means if we do things with discrete time, we draw a part of the geodesic and project the endpoint back onto the submanifold. This projection $\pi$ induces a projection of the tangent spaces, which allows us to transport tangent vectors too. The article explicitly calculates this parallel transport of the tangent vector along $\mathcal{M}$ as the base point $\Phi$ evolves to $\Phi + \varepsilon U$. If we differentiate in $\varepsilon$ and set $\varepsilon = 0$, they derive the piece of the affine connection that describes the induced connection on $\mathcal{M}$.
+
+\[\begin{aligned} & \Gamma_{\Phi}^{\psi, \xi}(U, V)=\left([\mathrm{D} \xi(\Phi)]^*\left[\mathrm{D}^2 \psi(\xi(\Phi))\right][\mathrm{D} \xi(\Phi)]\right)^{-1}[\mathrm{D} \xi(\Phi)]^*\left[\mathrm{D}^2 \psi(\xi(\Phi))\right] \\ & \left(\left[\mathrm{D}^2 \xi(\Phi)\right](U, V)+\left[\mathrm{D}^2 \psi(\xi(\Phi))\right]^{-1}\left[\mathrm{D}^3 \psi(\xi(\Phi))\right]([\mathrm{D} \xi(\Phi)] U,[\mathrm{D} \xi(\Phi)] V)\right) .\end{aligned} \]
+
+So to calculate the equation of internal motion, we calculate $\left[\mathrm{D}^2 \xi(\Phi)\right]$ and $[\mathrm{D} \xi(\Phi)]^*$. After some work, we have the equation of motion involving only derivatives of $\Phi$: $D\Phi$, $\dot{\Phi}$, and $\ddot{\Phi}$.
+
+\[ \ddot{\Phi}-\alpha \operatorname{div}\left(\textrm{ tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right) \] 
+
+\[= -\alpha \textrm{ div}\left( \textrm{ tr}([D \Phi]^{-1} [D \dot{\Phi}])^2 [D \Phi]^{-1}\right) - \alpha \textrm{ div}(\textrm{ tr}^2([D \Phi]^{-1} [D \dot{\Phi}]) [D\Phi]^{-1} )\]
+
+Next, they convert the equations of motion to Eulerian by using:
+
+\[u(\Phi(x)) = \dot{\Phi}(x)  \; \textrm{ and } \; \rho(\Phi(x)) = (\det (D\Phi))^{-1}\]
+
+We remove the $\Phi$ dependence and get an equivalent equation only involving 
+
+\[ \partial_t(\rho \boldsymbol{u})+\overrightarrow{\operatorname{div}}(\rho \boldsymbol{u} \otimes \boldsymbol{u}) \] 
+
+\[=-\alpha \rho((\cdot) \rho-\alpha \overrightarrow{\operatorname{div}}(\rho \operatorname{tr}(\mathrm{D}(\cdot)) \mathbf{I}))^{-1} \overrightarrow{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \boldsymbol{u}]^2\right) \rho \mathbf{I}+\operatorname{tr}^2([\mathrm{D} \boldsymbol{u}]) \rho \mathbf{I}\right)\]
+
+Finally, we put the equation in conservation form. As in section 4.2.4, we multiply by $\rho$ and use the equation for conservation of mass. We will pull the divergence and derivatives with $\rho$ through the inverse to obtain a final equation:
+
+
+$$
+\left\{\begin{array}{l}
+\partial_t\binom{\rho \boldsymbol{u}}{\rho}+\overrightarrow{\operatorname{div}}\binom{\rho \boldsymbol{u} \otimes \boldsymbol{u}+(P(\rho)+\Sigma) \mathbf{I}}{\rho \boldsymbol{u}}=\binom{\boldsymbol{f}}{0} \\
+\rho^{-1} \Sigma-\alpha \operatorname{div}\left(\rho^{-1} \nabla \Sigma\right)=\alpha\left(\operatorname{tr}^2([\mathrm{D} \boldsymbol{u}])+\operatorname{tr}\left([\mathrm{D} \boldsymbol{u}]^2\right)\right) .
+\end{array}\right.
+$$
+
+
+\section{Lagrangian Conservation}
+
+
+\[ \rho_0(X) \partial_t^2 \varphi(t, X)=-\partial_X\left(p\left(\frac{\rho_0(X)}{\partial_X \varphi(t, X)}\right)\right) \]
+
+The momentum equation in Lagrangian coordinates is:
+
+\[ \rho_0 \ddot{\Phi} = \partial_x P + \rho_0 f \]
+
+We begin with the equation (4.4). To turn this into a conservation law like the equation above, we multiply by $\rho$
+
+\[\left((\cdot)-\alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-2}\left[\partial_x(\cdot)\right]\right)\right)\left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=-2 \alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-3}\left[\partial_x \dot{\Phi}_t\right]^2\right)\]
+
+\newpage
+
+\section{Lagrangian Conservation Attempt 1}
+
+We begin with the 1-D conservation equation given in Eulerian coordinates. This is equation (4.5) in the article.
+
+\[\begin{cases}\partial_t(\rho u)+\partial_x\left(\rho u^2+P(\rho)+\Sigma\right) & =f \\ \partial_t \rho+\partial_x(\rho u) & =0 \\ \Sigma \rho^{-1}-\alpha \partial_x\left(\rho^{-1} \partial_x \Sigma\right) & =2 \alpha\left[\partial_x u\right]^2 .\end{cases}\]
+
+Let's first recall the conservation of mass in Lagrangian form. The textbook by Stuart uses the notation,
+
+\[ F(X,t) = \partial_x \Phi(X,t) \quad\quad \rho_m(X,t) (\det F(X,t)) = \rho_0(X)  \]
+
+However, we use that $u$ and $\Phi$ are related via
+
+\[u(\Phi(x)) = \dot{\Phi}(x)  \; \textrm{ and } \; \rho(\Phi(x)) = (\det (D\Phi))^{-1}\]
+\[\ddot{\Phi}_t(x)=\left[\partial_x u\left(\Phi_t(x)\right)\right] u\left(\Phi_t(x)\right)+\partial_t u\left(\Phi_t(x)\right)\]
+
+and our goal is to get something approximating one of the following momentum balance equations:
+
+\[ \rho_0 \ddot{\Phi} = div(P) + \rho_0 b = f - \partial_X \, p\left(\frac{\rho_0}{\partial_X \Phi} \right).    \]
+
+\par\noindent\rule{\textwidth}{0.4pt}
+
+Working with the first term in the conservation law,
+
+\[ \partial_t (\rho u) = \partial_t (\dot{\Phi} (\det (D\Phi))^{-1} ) = \ddot{\Phi} (\det (D\Phi))^{-1} + \dot{\Phi} \partial_t (\det (D\Phi))^{-1} \]
+\[= \ddot{\Phi} (\det (D\Phi))^{-1} - \dot{\Phi} (\det (D\Phi))^{-2}\partial_t \det (D\Phi)\]
+
+By the Jacobi Formula,
+
+\[\partial_t \det (D\Phi) = \det (D\Phi)  \; tr\left((D\Phi)^{-1} \frac{d D\Phi}{dt}\right) \]
+
+so we have the first term in the eulerian coordinate conservation law becomes:
+
+\[\partial_t (\rho u)= \ddot{\Phi} (\det (D\Phi))^{-1} - \dot{\Phi} (\det (D\Phi))^{-1} \, tr\left((D\Phi)^{-1} \frac{d D\Phi}{dt}\right)\]
+
+Or, if we want to simplify to something in 1-D, we obtain:
+
+\[\partial_t (\rho u)= \frac{\ddot{\Phi}}{\partial_x\Phi} -  \frac{\dot{\Phi} \partial_x \dot{\Phi}}{(\partial_x\Phi)^2} = \frac{\ddot{\Phi}}{\partial_x\Phi} -  \frac{ \partial_x (\dot{\Phi}^2)}{2(\partial_x\Phi)^2}\]
+
+
+Next, lets simplify some of the second term:
+
+\[ \partial_x(\rho u^2) = \partial_x(\dot{\Phi}^2 (\det (D\Phi))^{-1}) = \partial_x\left( \frac{\dot{\Phi}^2}{\partial_x \Phi}   \right)  \]
+
+
+Next, we can use that
+
+\[ K\left(t, \Phi_t, \dot{\Phi}_t\right) \circ \Phi_t^{-1}=\partial_x P(\rho)-f \]
+
+Finally, we need to express the equation for $\Sigma$ in Lagrangian coordinates. In Eulerian coordinates, we had
+
+\[\Sigma \rho^{-1}-\alpha \partial_x\left(\rho^{-1} \partial_x \Sigma\right) \quad=2 \alpha\left[\partial_x u\right]^2\]
+
+which in Lagrangian coordinates becomes:
+
+\[ \Sigma \det (D\Phi) - \alpha \partial_x \left( \det (D\Phi) \partial_x \Sigma    \right) = 2 \alpha [\partial_x \dot{\Phi}]^2. \]
+
+If we put our ``simplified'' parts together:
+
+\[ \frac{\ddot{\Phi}}{\partial_x\Phi} -  \frac{ \partial_x (\dot{\Phi}^2)}{2(\partial_x\Phi)^2}+\partial_x\left( \frac{\dot{\Phi}^2}{\partial_x \Phi} + \Sigma  \right)  = f - \partial_x P\left( \frac{1}{\partial_x \Phi} \right)  \]
+
+
+Then to put all three equations together:
+
+\[
+\begin{cases}\frac{\ddot{\Phi}}{\partial_x\Phi} -  \frac{ \partial_x (\dot{\Phi}^2)}{2(\partial_x\Phi)^2}+\partial_x\left( \frac{\dot{\Phi}^2}{\partial_x \Phi} + \Sigma  \right) & = f - \partial_x P\left( \frac{1}{\partial_x \Phi} \right)  \\  \rho(\Phi(x)) & = 1/ \partial_x \Phi \\ 
+\Sigma (\partial_x\Phi) - \alpha \partial_x \left( \partial_x \Phi \;  \partial_x \Sigma    \right) = 2 \alpha [\partial_x \dot{\Phi}]^2 .\end{cases}
+\]
+
+
+
+\newpage
+
+\section{Lagrangian Conservation Attempt 2}
+
+Alternatively, we can try and create a conservation law using Newton's second law already in Lagrangian coordinates.
+
+\[ \left((\cdot)-\alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-2}\left[\partial_x(\cdot)\right]\right)\right)\left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=-2 \alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-3}\left[\partial_x \dot{\Phi}_t\right]^2\right)   \]
+
+
 
 \section{Numerical experiments}
 \label{sec:numerics}
