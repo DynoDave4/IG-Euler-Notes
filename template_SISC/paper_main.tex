@@ -9,7 +9,6 @@
 %\usepackage{bbm}
 
 
-
 % \documentclass[onefignum,onetabnum]{siamart220329}
 % \allowdisplaybreaks
 
@@ -46,6 +45,7 @@
 %</award-group>
 %</funding-group>
 
+\definecolor{RED}{named}{red}
 \begin{document}
 
 \maketitle
@@ -324,6 +324,134 @@ Alternatively, we can try and create a conservation law using Newton's second la
 \[ \left((\cdot)-\alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-2}\left[\partial_x(\cdot)\right]\right)\right)\left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=-2 \alpha \partial_x\left(\left[\partial_x \Phi_t\right]^{-3}\left[\partial_x \dot{\Phi}_t\right]^2\right)   \]
 
 
+
+
+Multiply on the left by $\partial_x^{-1}$
+
+
+\[ \left( \partial_x^{-1}(\cdot)-\alpha\left(\left[\partial_x \Phi_t\right]^{-2}\left[\partial_x(\cdot)\right]\right)\right)\left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=-2 \alpha \left(\left[\partial_x \Phi_t\right]^{-3}\left[\partial_x \dot{\Phi}_t\right]^2\right)   \]
+
+Multiply from the left by $\rho = 1/\partial_x \Phi$ and try to bring out the $\partial_x$
+
+\[ \left( (\partial_x \Phi_t)^2 \partial_x^{-1} (\cdot)-  \alpha\left(\left[\partial_x(\cdot)\right]\right)\right)\left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=  - 2 \alpha \left(\left[\partial_x \Phi_t\right]^{-1}\left[\partial_x \dot{\Phi}_t\right]^2\right)   \]
+
+
+Pull it through to the right
+
+\[ \left( (\partial_x \Phi_t)^2  (\cdot)-  \alpha\left[\partial_x^2(\cdot)\right]\right)\partial_x^{-1} \left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=  - 2 \alpha \left(\left[\partial_x \Phi_t\right]^{-1}\left[\partial_x \dot{\Phi}_t\right]^2\right)   \]
+
+
+
+\[ \left(\ddot{\Phi}_t-K\left(t, \Phi_t, \dot{\Phi}_t\right)\right)=  - 2 \alpha \partial_x \left( (\partial_x \Phi_t)^2  (\cdot)-  \alpha\left[\partial_x^2(\cdot)\right]\right)^{-1}\left(\left[\partial_x \Phi_t\right]^{-1}\left[\partial_x \dot{\Phi}_t\right]^2\right)   \]
+
+\[ \ddot{\Phi}_t+2 \alpha \partial_x \left( (\partial_x \Phi_t)^2  (\cdot)-  \alpha\left[\partial_x^2(\cdot)\right]\right)^{-1}\left(\left[\partial_x \Phi_t\right]^{-1}\left[\partial_x \dot{\Phi}_t\right]^2\right)  =  K\left(t, \Phi_t, \dot{\Phi}_t\right)   \]
+
+
+\section{Multidimensional Case of Above}
+
+We begin with equation 
+
+\[\begin{aligned} \ddot{\Phi}-\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right)= & -\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left(\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)^2\right)[\mathrm{D} \Phi]^{-1}\right) \\ & -\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}^2\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right) .\end{aligned}\]
+
+The operator $\frac{\downarrow}{\operatorname{div}}$ means to take the divergence of the matrix columnwise. It may be most useful to express this equation first with subscripts. As an intermediate step, we define $A_{ij}(x) = [D \Phi]^{-1}_{ij}$
+
+
+
+\[ \operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1} = \operatorname{tr}\left(A[\mathrm{D} \ddot{\Phi}]\right)A = \left(A^T : [D\ddot{\Phi}]  \right) A = A_{ji} \ddot{\Phi}_{i,j} A_{kl} \]
+
+Next if we apply the operator $\frac{\downarrow}{\operatorname{div}}$:
+
+\[ \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right)_l = \partial_k \left( A_{ji} \ddot{\Phi}_{i,j} A_{kl} \right)  \]
+\[ = A_{ji,k} \ddot{\Phi}_{i,j} A_{kl} + A_{ji} \ddot{\Phi}_{i,jk} A_{kl} + A_{ji} \ddot{\Phi}_{i,j} A_{kl,k}  \]
+\[ = A_{ji,k} \ddot{\Phi}_{i,j} A_{kl} + A_{ji} \ddot{\Phi}_{i,jk} A_{kl} + A_{ji} \ddot{\Phi}_{i,j} A_{kl,k}  \]
+\[ = \left( A_{ji,k} A_{kl} \partial_j(\cdot) + A_{ji} A_{kl} \partial_j \partial_k (\cdot) + A_{ji} A_{kl,k} \partial_j(\cdot) \right) \ddot{\Phi}_i     \]
+
+\par\noindent\rule{\textwidth}{0.4pt}
+
+Using the notation of Stuart, we have that this operator $\frac{\downarrow}{\operatorname{div}}(S) = \nabla \cdot\operatorname{div}(S^T)$
+
+\[ \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right) = \nabla \cdot \left( \left(A^T : \nabla\ddot{\Phi}  \right) A^T  \right).  \]
+
+Now we may use some of the identities proven in Stuart:
+
+\[ \nabla \cdot \left( \left(A^T : \nabla\ddot{\Phi}  \right) A^T  \right) =\left(A^T : \nabla\ddot{\Phi}  \right) (\nabla \cdot A^T)  + A^T \; \nabla (A^T : \nabla\ddot{\Phi}  )  \]
+
+\[ = \left( \left(A^T : (\cdot)  \right) (\nabla \cdot A^T)  + A^T \; \nabla (A^T : (\cdot)  )   \right) \circ \nabla \circ \ddot{\Phi}  \]
+
+
+
+
+
+
+\par\noindent\rule{\textwidth}{0.4pt}
+
+
+Altogether, the operator we'd like to invert is for $A(x) = [D \Phi]^{-T}$:
+
+\[ \left( (\cdot) - \alpha \left( \left(A : (\cdot)  \right) (\nabla \cdot A)  + A \; \nabla (A : (\cdot)  )   \right) \circ \nabla (\cdot) \right)   \]
+
+
+which appears in the left hand side of:
+
+
+\[\begin{aligned} \ddot{\Phi}-\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right)= & -\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left(\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)^2\right)[\mathrm{D} \Phi]^{-1}\right) \\ & -\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}^2\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right) .\end{aligned} \]
+
+
+\newpage
+
+\par\noindent\rule{\textwidth}{0.4pt}
+
+Lets start with the law of motion
+
+\[\begin{aligned} \ddot{\Phi}-\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \ddot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right)= & -\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left(\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)^2\right)[\mathrm{D} \Phi]^{-1}\right) \\ & -\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}^2\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)[\mathrm{D} \Phi]^{-1}\right) .\end{aligned} \]
+
+where we pretend that we may invert the operator $\frac{\downarrow}{\operatorname{div}}(S) = \nabla \cdot (S^T)$.
+
+\[ \left(\frac{\downarrow}{\operatorname{div}} \right)^{-1} \left( (\cdot )-\alpha \frac{\downarrow}{\operatorname{div}}\left(\operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} (\cdot)]\right)[\mathrm{D} \Phi]^{-1}\right) \right) \ddot{\Phi} \]
+\[= -\alpha \left(\operatorname{tr}\left(\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)^2\right) + \operatorname{tr}^2\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)\right) [\mathrm{D} \Phi]^{-1} \]
+\[ =   \left( \left(\frac{\downarrow}{\operatorname{div}} \right)^{-1} (\cdot )-\alpha \operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} (\cdot)]\right)[\mathrm{D} \Phi]^{-1}\right)  \ddot{\Phi} \]
+
+Putting the two sides together, we obtain a single equation.
+
+\[ \left( [\mathrm{D} \Phi] \left(\frac{\downarrow}{\operatorname{div}} \right)^{-1} (\cdot )-\alpha \operatorname{tr}\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} (\cdot)]\right)\right)  \ddot{\Phi} = -\alpha \left(\operatorname{tr}(\cdot^2) + \operatorname{tr}^2(\cdot)\right)\left([\mathrm{D} \Phi]^{-1}[\mathrm{D} \dot{\Phi}]\right)  I  \]
+
+Next, we'd like to pull through the $\left(\frac{\downarrow}{\operatorname{div}} \right)^{-1}$
+
+\[ = \left( [\mathrm{D} \Phi] (\cdot )-\alpha \operatorname{tr}\left([\mathrm{D} \Phi]^{-1} \left[\mathrm{D} \left(\frac{\downarrow}{\operatorname{div}} \right)(\cdot) \right]\right)\right) \left(\frac{\downarrow}{\operatorname{div}} \right)^{-1} \ddot{\Phi} \]
+
+We need to simplify the operator:
+
+\[ \operatorname{tr}\left([\mathrm{D} \Phi]^{-1} \left[\mathrm{D} \left(\frac{\downarrow}{\operatorname{div}} \right) (\cdot) \right] \right) = [\mathrm{D} \Phi]^{-T} : \left[\mathrm{D} \left(\frac{\downarrow}{\operatorname{div}} \right) (\cdot) \right] = [\mathrm{D} \Phi]^{-T} : \left[\mathrm{D} (\nabla \cdot (\cdot)^T) \right] \]
+
+\[ [\mathrm{D} \Phi]^{-T} : \left[\mathrm{D} (\nabla \cdot (\cdot)^T) \right]  \]
+
+This operator sends:
+
+\[ B \mapsto \sum_{i,k} \left( \sum_j \frac{\partial^2 B_{ji}}{\partial x_j \partial x_k}    \right) [D \Phi]_{ki}^{-1}  \]
+
+\medskip
+
+\par\noindent\rule{\textwidth}{0.4pt}
+
+\medskip
+
+Adjoint Lemma: the operator $\frac{\downarrow}{\operatorname{div}}$ is adjoint to $\operatorname{tr}$.
+
+Integrate a test function $V$
+
+
+
+
+
+
+
+\medskip
+
+\par\noindent\rule{\textwidth}{0.4pt}
+
+\medskip
+
+\newpage
 
 \section{Numerical experiments}
 \label{sec:numerics}
